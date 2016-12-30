@@ -2,7 +2,8 @@ FROM centos:centos7
 MAINTAINER WisdomFusion <WisdomFusion@gmail.com>
 
 # centos repo
-RUN mv /etc/yum.repos.d/CentOS-Base.repo{,.backup} \
+RUN yum -y install wget \
+  && mv /etc/yum.repos.d/CentOS-Base.repo{,.backup} \
   && wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo \
   && yum -y install epel-release
 
@@ -18,7 +19,7 @@ RUN yum -y install gcc gcc-c++ autoconf automake cmake zlib zlib-devel compat-li
   libxml2 libxml2-devel libXpm libXpm-devel libmcrypt-devel krb5 krb5-devel libidn libidn-devel \
   libicu libicu-devel openssl openssl-devel openldap openldap-devel nss_ldap openldap-clients \
   openldap-servers pam-devel \
-  man wget unzip zip nmap net-tools iptraf sysstat iotop ntp vim-enhanced bash-completion
+  man unzip zip nmap net-tools iptraf sysstat iotop ntp vim-enhanced bash-completion
 
 # Vim settings
 RUN alias vi='vim' \
